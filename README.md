@@ -1,1 +1,50 @@
-# Linux-study
+# 🚀 Cloud Engineer & Linux Study Journey
+
+> **"개발자 & 클라우드 엔지니어를 향한 여정"**  
+> 본 저장소는 깡통 상태에서 출발해, 리눅스 시스템 마스터를 거쳐 클라우드 인프라 아키텍처 전문가 또는 개발자로 성장하기 위한 **치열한 학습 기록장**입니다. 🔥
+
+---
+
+## 🗺️ Master Roadmap (최종 목표)
+
+* **[🔥 Phase 1] Linux 기초 및 시스템 관리 (현재 진행 중)** 
+* **[ ] Phase 2] 클라우드 네트워크 & 보안 (IP, DNS, VPC, Firewall)**
+* **[ ] Phase 3] 쉘 스크립트(Bash) & 인프라 자동화 기초**
+* **[ ] Phase 4] AWS Core Services (EC2, S3, IAM, ALB)**
+* **[ ] Phase 5] 컨테이너 기반 인프라 (Docker & Kubernetes)**
+* **[ ] Phase 6] IaC & DevOps 자동화 (Terraform, CI/CD)**
+
+---
+
+## 🐧 Phase 1. Linux System Administrator (15 Days Challenge)
+
+> 클라우드 서버의 뼈대가 되는 리눅스를 밑바닥부터 파헤칩니다. 하루에 하나씩, 확실하게 내 것으로 만듭니다!
+
+### 📚 Study Index & Log
+
+| Day | 주제 및 학습 내용 | 파일 링크 | 상태 |
+| :---: | :--- | :---: | :---: |
+| **01** | 리눅스란 무엇인가? / 기본 파일 탐색 (`pwd`, `ls`, `cd`) | [`01-basic-navigation.md`](01-basic-navigation.md) | 🔥 진행중 |
+| **02** | 파일 및 폴더 생성/복사/이동/삭제 (`mkdir`, `cp`, `mv`, `rm`) | [`02-file-directory-control.md`](02-file-directory-control.md) | ⏳ 대기중 |
+| **03** | 파일 내용 확인 및 실시간 검색 (`cat`, `less`, `grep`) | [`03-text-processing.md`](03-text-processing.md) | ⏳ 대기중 |
+| **04** | 리눅스 보안의 꽃: 파일 권한과 소유자 설정 (`chmod`, `chown`) | [`04-file-permissions.md`](04-file-permissions.md) | ⏳ 대기중 |
+| **05** | 사용자 및 그룹 계정 관리 (`useradd`, `passwd`, `sudo`) | [`05-user-management.md`](05-user-management.md) | ⏳ 대기중 |
+| **06** | 패키지 매니저를 통한 프로그램 설치와 삭제 (`apt` / `yum`) | [`06-package-management.md`](06-package-management.md) | ⏳ 대기중 |
+| **07** | 실행 중인 프로그램 모니터링 및 제어 (`ps`, `top`, `kill`) | [`07-process-management.md`](07-process-management.md) | ⏳ 대기중 |
+| **08** | 디스크 용량 분석 및 파일시스템 마운트 (`df`, `du`, `mount`) | [`08-disk-storage.md`](08-disk-storage.md) | ⏳ 대기중 |
+| **09** | 서버 IP와 네트워크 인터페이스 트러블슈팅 (`ip`, `ping`, `netstat`) | [`09-network-basic.md`](09-network-basic.md) | ⏳ 대기중 |
+| **10** | 시큐어한 원격 접속의 기본: SSH 설정 및 키 인증 (`authorized_keys`) | [`10-remote-access-ssh.md`](10-remote-access-ssh.md) | ⏳ 대기중 |
+| **11** | 시스템 백그라운드 서비스(Daemon) 관리 (`systemctl`) | [`11-service-systemd.md`](11-service-systemd.md) | ⏳ 대기중 |
+| **12** | 반복 작업 자동화 스케줄러 (`crontab`) | [`12-cron-automation.md`](12-cron-automation.md) | ⏳ 대기중 |
+| **13** | 서버 로그 분석을 통한 장애 트러블슈팅 (`/var/log`) | [`13-log-management.md`](13-log-management.md) | ⏳ 대기중 |
+| **14** | 반복 업무를 줄여주는 간단한 쉘 스크립트 작성 (`.sh`) | [`14-shell-script-intro.md`](14-shell-script-intro.md) | ⏳ 대기중 |
+| **15** | [Mini Project] 리눅스로 웹서버 구축 및 종합 점검 | [`15-linux-review-project.md`](15-linux-review-project.md) | ⏳ 대기중 |
+
+---
+
+## 🛠️ My Tech Stack & Tools
+
+* **OS:** Ubuntu Linux / CentOS
+* **VCS:** Git & GitHub
+* **Editor:** VS Code / Nano
+* **Mindset:** "손으로 치고, 부딪히고, 기록한다." 💡# Linux-study
