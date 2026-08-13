@@ -13,13 +13,13 @@
   * `-p` (parents): 하위 경로까지 포함된 중첩 디렉터리를 생성할 때, 존재하지 않는 상위 디렉터리까지 한 번에 생성합니다.
 
 ```bash
-# 단일 디렉터리 생성
+# 1. 단일 디렉터리 생성
 mkdir project
 
-# 여러 디렉터리 동시 생성
+# 2. 여러 디렉터리 동시 생성
 mkdir docs src bin
 
-# 중첩된 하위 디렉터리 구조 한 번에 생성 (project/src/components)
+# 3. 중첩된 하위 디렉터리 구조 한 번에 생성 (project/src/components)
 mkdir -p project/src/components
 ```
 
@@ -32,10 +32,10 @@ mkdir -p project/src/components
 * **기본 구문:** `touch [파일명]`
 
 ```bash
-# 단일 빈 파일 생성
+# 1. 단일 빈 파일 생성
 touch index.html
 
-# 여러 파일 동시 생성
+# 2. 여러 파일 동시 생성
 touch app.js style.css README.md
 ```
 
@@ -52,13 +52,13 @@ touch app.js style.css README.md
   * `-v` (verbose): 복사 진행 과정을 상세하게 출력합니다.
 
 ```bash
-# 파일 복사 (app.js를 app_backup.js라는 이름으로 복사)
+# 1. 파일 복사 (app.js를 app_backup.js라는 이름으로 복사)
 cp app.js app_backup.js
 
-# 파일을 특정 디렉터리 내부로 복사
+# 2. 파일을 특정 디렉터리 내부로 복사
 cp index.html project/src/
 
-# 디렉터리 전체 복사 (src 폴더를 src_backup 폴더로 복사)
+# 3. 디렉터리 전체 복사 (src 폴더를 src_backup 폴더로 복사)
 cp -r src src_backup
 ```
 
