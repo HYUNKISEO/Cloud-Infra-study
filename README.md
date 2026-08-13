@@ -8,11 +8,11 @@
 ## 🗺️ Master Roadmap (최종 목표)
 
 * **[🔥 Phase 1] Linux 기초 및 시스템 관리 (https://github.com/HYUNKISEO/Linux-study) (현재 진행 중)** 
-* **[ ] Phase 2] 클라우드 네트워크 & 보안 (IP, DNS, VPC, Firewall)**
-* **[ ] Phase 3] 쉘 스크립트(Bash) & 인프라 자동화 기초**
-* **[ ] Phase 4] AWS Core Services (EC2, S3, IAM, ALB)**
-* **[ ] Phase 5] 컨테이너 기반 인프라 (Docker & Kubernetes)**
-* **[ ] Phase 6] IaC & DevOps 자동화 (Terraform, CI/CD)**
+* **[ Phase 2] 클라우드 네트워크 & 보안 (IP, DNS, VPC, Firewall)**
+* **[ Phase 3] 쉘 스크립트(Bash) & 인프라 자동화 기초**
+* **[ Phase 4] AWS Core Services (EC2, S3, IAM, ALB)**
+* **[ Phase 5] 컨테이너 기반 인프라 (Docker & Kubernetes)**
+* **[ Phase 6] IaC & DevOps 자동화 (Terraform, CI/CD)**
 
 ---
 
