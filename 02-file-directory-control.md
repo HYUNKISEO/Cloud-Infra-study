@@ -21,6 +21,9 @@ mkdir docs src bin
 
 # 중첩된 하위 디렉터리 구조 한 번에 생성 (project/src/components)
 mkdir -p project/src/components
+```
+
+---
 
 ## 2. 빈 파일 생성 (`touch`)
 
@@ -34,6 +37,9 @@ touch index.html
 
 # 여러 파일 동시 생성
 touch app.js style.css README.md
+```
+
+---
 
 ## 3. 파일 및 디렉터리 복사 (`cp`)
 
@@ -54,6 +60,9 @@ cp index.html project/src/
 
 # 디렉터리 전체 복사 (src 폴더를 src_backup 폴더로 복사)
 cp -r src src_backup
+```
+
+---
 
 ## 4. 파일 및 디렉터리 이동 & 이름 변경 (`mv`)
 
@@ -74,6 +83,9 @@ mv README.md project/docs/READ_FIRST.md
 
 # 4. 디렉터리 이름 변경
 mv project my-project
+```
+
+---
 
 ## 5. 파일 및 디렉터리 삭제 (`rm`, `rmdir`)
 
@@ -107,6 +119,8 @@ rm -rf build
 > 2. **`rm -rf` 실행 전 `pwd` 재확인:** 잘못된 경로에서 `rm -rf`를 실행하면 프로젝트 전체 또는 서버 운영 체제가 파괴될 수 있습니다. 삭제 명령 입력 직전에는 항상 **`pwd`로 현재 작업 디렉터리를 확인**하는 것이 실무 표준 수칙입니다.
 > 3. **띄어쓰기 오타 치명상 예방:** `rm -rf / var/log`처럼 경로 사이에 실수로 공백(스페이스)을 넣으면, 최상위 루트(`/`) 전체를 삭제하는 명령으로 해석되어 서버가 즉시 다운될 수 있습니다.
 > 4. **백업 및 `-i` 옵션 활용:** 중요한 데이터나 운영 서버 환경에서는 삭제 전 미리 복사본(`cp`)을 만들어 두거나, `-i` 옵션을 붙여 안전하게 삭제 대상을 하나씩 확인하는 습관이 좋습니다.
+
+---
 
 ## 6. Day 2 핵심 명령어 요약
 
