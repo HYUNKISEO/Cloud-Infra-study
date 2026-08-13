@@ -1,7 +1,6 @@
 # 02. 파일 및 디렉터리 제어 (File & Directory Control)
 
-> **학습일:** Day 2  
-> **학습 목표:** 리눅스 터미널에서 파일과 디렉터리를 생성, 복사, 이동, 이름 변경, 삭제하는 핵심 명령어를 익히고 실무 권장 습관을 체득합니다.
+> **학습 목표:** 리눅스 터미널에서 파일과 디렉터리를 생성, 복사, 이동, 이름 변경, 삭제하는 핵심 명령어를 익히고, 실무 단축키와 경로 표현을 활용해 작업 생산성을 높입니다.
 
 ---
 
@@ -22,6 +21,9 @@ mkdir docs src bin
 
 # 3. 중첩된 하위 디렉터리 구조 한 번에 생성 (project/src/components)
 mkdir -p project/src/components
+
+# 4. 중괄호 확장({})으로 여러 하위 디렉터리를 한 번에 생성
+mkdir -p app/{src,docs,tests}
 ```
 
 ---
@@ -38,6 +40,9 @@ touch index.html
 
 # 2. 여러 파일 동시 생성
 touch app.js style.css README.md
+
+# 3. 중괄호 확장({})을 사용해 연속된 파일 한 번에 생성 (file1.txt ~ file5.txt)
+touch file{1..5}.txt
 ```
 
 ---
@@ -61,6 +66,9 @@ cp index.html project/src/
 
 # 3. 디렉터리 전체 복사 (src 폴더를 src_backup 폴더로 복사)
 cp -r src src_backup
+
+# 4. 상위 디렉터리(..)에 있는 config.json을 현재 디렉터리(.)로 복사
+cp ../config.json .
 ```
 
 ---
@@ -82,8 +90,8 @@ mv main.css project/src/
 # 3. 이동과 동시에 이름 변경
 mv README.md project/docs/READ_FIRST.md
 
-# 4. 디렉터리 이름 변경
-mv project my-project
+# 4. 와일드카드(*)를 활용해 .log 확장자 파일 전체를 logs 폴더로 이동
+mv *.log logs/
 ```
 
 ---
@@ -108,10 +116,13 @@ rmdir empty_folder
 rm app_backup.js
 rm file1.txt file2.txt
 
-# 3. 디렉터리 및 하위 콘텐츠 전체 삭제
+# 3. 와일드카드(?)를 사용해 test1.txt, test2.txt 등 한 글자 매칭 삭제
+rm test?.txt
+
+# 4. 디렉터리 및 하위 콘텐츠 전체 삭제
 rm -r src_backup
 
-# 4. 디렉터리 강제 영구 삭제 (주의!)
+# 5. 디렉터리 강제 영구 삭제 (주의!)
 rm -rf build
 ```
 
@@ -132,3 +143,15 @@ rm -rf build
 | **`cp`** | 파일 및 디렉터리 복사 | `-r` | 디렉터리 복사 시 `-r` 옵션 미사용 시 오류 발생 |
 | **`mv`** | 파일/디렉터리 이동 및 이름 변경 | - | 동일 경로 지정 시 이름 변경, 다른 경로는 이동 |
 | **`rm`** | 파일 및 디렉터리 영구 삭제 | `-r`, `-f` | 삭제 시 휴지통 없이 영구 삭제되므로 `pwd` 확인 필수 |
+
+---
+
+## 7. Day 2 실무 핵심 단축키 & CLI 팁
+
+| 단축키 / 기호 | 주요 기능 | 활용 예시 |
+| :--- | :--- | :--- |
+| **`Tab`** | 파일명/경로 자동 완성 | `cd pro` 입력 후 `Tab` → `cd project/` |
+| **`Alt` + `.`** | 직전 명령어의 마지막 인자 가져오기 | `mkdir my_project` 후 `cd ` 입력 상태에서 누름 |
+| **`cd -`** | 직전 작업 디렉터리로 상호 이동 | `/var/log`와 `/etc/nginx` 폴더 간 빠른 복귀 |
+| **`.` / `..`** | 현재 디렉터리 / 부모(상위) 디렉터리 | `cp ../config.json .` |
+| **`*` / `?`** | 모든 문자 매칭 / 1개 문자 매칭 (와일드카드) | `mv *.log logs/`, `rm test?.txt` |
