@@ -24,8 +24,8 @@
 
 | Day | 주제 및 학습 내용 | 파일 링크 | 상태 |
 | :---: | :--- | :---: | :---: |
-| **01** | 리눅스란 무엇인가? / 기본 파일 탐색 (`pwd`, `ls`, `cd`) | [`01-basic-navigation.md`](01-basic-navigation.md) | 🔥 진행중 |
-| **02** | 파일 및 폴더 생성/복사/이동/삭제 (`mkdir`, `cp`, `mv`, `rm`) | [`02-file-directory-control.md`](02-file-directory-control.md) | ⏳ 대기중 |
+| **01** | 리눅스란 무엇인가? / 기본 파일 탐색 (`pwd`, `ls`, `cd`) | [`01-basic-navigation.md`](01-basic-navigation.md) | ✅ 완료 |
+| **02** | 파일 및 폴더 생성/복사/이동/삭제 (`mkdir`, `cp`, `mv`, `rm`) | [`02-file-directory-control.md`](02-file-directory-control.md) | 🔥 진행중 |
 | **03** | 파일 내용 확인 및 실시간 검색 (`cat`, `less`, `grep`) | [`03-text-processing.md`](03-text-processing.md) | ⏳ 대기중 |
 | **04** | 리눅스 보안의 꽃: 파일 권한과 소유자 설정 (`chmod`, `chown`) | [`04-file-permissions.md`](04-file-permissions.md) | ⏳ 대기중 |
 | **05** | 사용자 및 그룹 계정 관리 (`useradd`, `passwd`, `sudo`) | [`05-user-management.md`](05-user-management.md) | ⏳ 대기중 |
