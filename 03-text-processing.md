@@ -25,7 +25,7 @@ cat -n server.log
 cat header.txt body.txt footer.txt
 ```
 
-> ⚠️ **주의:** 파일 크기가 몇 백 MB 이상으로 매우 큰 경우, `cat`을 사용하면 터미널이 한동안 먹통이 되거나 수천 줄이 순식간에 지나가 버릴 수 있습니다. 대용량 파일은 아래의 `less`나 `head`/`tail`을 사용하는 것이 좋습니다.
+> ⚠️ **주의:** 파일 크기가 몇 백 MB 이상으로 매우 큰 경우, `cat`을 사용하면 터미널이 한동안 먹통이 되거나 수천 줄이 순식간에 지나가 버릴 수 있습니다. 대용량 파일은 `less`나 `head`/`tail`을 사용하는 것이 좋습니다.
 
 ---
 
@@ -100,6 +100,8 @@ grep -v "INFO" server.log
 grep -rn "TODO" src/
 ```
 
+> 💡 **실무 팁 (UUOC 방지):** 습관적으로 `cat server.log | grep "ERROR"`처럼 작성하는 경우가 많습니다. 불필요하게 `cat`을 경유하지 않고 `grep "ERROR" server.log`처럼 파일명을 직접 인자로 넘기는 것이 리소스를 절약하는 실무 정석입니다.
+
 ---
 
 ## 5. 출력 연결과 저장 (`|`, `>`, `>>`)
@@ -114,11 +116,16 @@ cat header.txt body.txt > combined.txt
 echo "LOG END" >> system.log
 
 # 3. 파이프 (|): 앞 명령어의 출력을 뒤 명령어의 입력으로 전달
-cat server.log | grep "ERROR"
+grep "ERROR" server.log | grep "404"
 
-# 4. 파이프 + less 조합: 대용량 검색 결과를 페이지 단위로 탐색
+# 4. 파이프 + wc -l 조합: 검색된 에러 발생 건수(줄 수) 세기
+grep "ERROR" server.log | wc -l
+
+# 5. 파이프 + less 조합: 대용량 검색 결과를 페이지 단위로 탐색
 grep -i "exception" application.log | less
 ```
+
+> 🛑 **실무 주의사항:** `>`(덮어쓰기)를 사용할 때는 기존 파일의 내용이 **경고 없이 즉시 덮어씌워져 파괴**됩니다. 기존 로그 뒤에 내용을 계속 쌓아야 하는 경우 반드시 `>>`(덧붙이기)를 사용하세요!
 
 ---
 
@@ -139,8 +146,8 @@ grep -i "exception" application.log | less
 | 구분 | 단축키 / 기호 | 주요 기능 | 활용 예시 |
 | :--- | :---: | :--- | :--- |
 | **CLI 조작** | **`Ctrl` + `C`** | 실행 중인 프로세스 강제 종료 | `tail -f` 모니터링 종료 시 사용 |
-| **CLI 연동** | **`\|` (Pipe)** | 앞 명령어의 출력을 뒤 명령어의 입력으로 전달 | `cat server.log \| grep "404"` |
-| **CLI 연동** | **`>` / `>>`** | 파일 저장 (덮어쓰기 / 덧붙이기) | `grep "ERROR" app.log > errors.txt` |
+| **CLI 연동** | **`\|` (Pipe)** | 앞 명령어의 출력을 뒤 명령어의 입력으로 전달 | `grep "ERROR" app.log \| wc -l` |
+| **CLI 연동** | **`>` / `>>`** | 파일 저장 (덮어쓰기 / 덧붙이기) | `grep "ERROR" app.log >> errors.txt` |
 | **less 내 이동** | **`Space` / `PageDown`** | 한 페이지 아래로 이동 | - |
 | **less 내 이동** | **`b` / `PageUp`** | 한 페이지 위로 이동 | - |
 | **less 내 이동** | **`↓` / `j`** , **`↑` / `k`** | 한 줄 아래 / 위로 이동 | - |
