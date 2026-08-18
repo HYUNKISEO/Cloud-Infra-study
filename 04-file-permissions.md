@@ -75,6 +75,7 @@ chmod -R 755 project_dir/
 
 * **대상:** `u` (User/소유자), `g` (Group), `o` (Others/기타), `a` (All/전체)
 * **연산자:** `+` (권한 추가), `-` (권한 제거), `=` (권한 지정)
+* **다중 설정:** 콤마(`,`)를 사용하면 서로 다른 대상의 권한을 한 번에 연달아 변경할 수 있습니다. (⚠️ 콤마 전후로 **공백 없이** 작성)
 
 ```bash
 # 1. 소유자(u)에게 실행(x) 권한 추가
@@ -86,7 +87,10 @@ chmod o-wx confidential.log
 # 3. 그룹(g)과 기타 사용자(o)에게 읽기(r) 권한만 부여
 chmod go=r public.txt
 
-# 4. 모든 사용자(a)에게 실행(x) 권한 추가 (chmod +x와 동일)
+# 4. 콤마(,)를 사용해 복수의 대상 권한을 한 번에 변경 (공백 금지)
+chmod u+x,o-w deploy.sh
+
+# 5. 모든 사용자(a)에게 실행(x) 권한 추가 (chmod +x와 동일)
 chmod a+x run.sh
 ```
 
@@ -155,7 +159,7 @@ chown -R www-data:www-data /var/www/html
 
 | 구분 | 명령어 / 기호 | 주요 기능 | 실무 활용 예시 |
 | :--- | :--- | :--- | :--- |
-| **권한 변경** | **`chmod`** | 파일/디렉터리 접근 권한 변경 | `chmod 755 script.sh` / `chmod +x run.sh` |
+| **권한 변경** | **`chmod`** | 파일/디렉터리 접근 권한 변경 | `chmod 755 script.sh` / `chmod u+x,o-w run.sh` |
 | **소유권 변경** | **`chown`** | 소유자 및 소유 그룹 변경 | `chown -R nginx:nginx /var/www` |
 | **그룹 전용 변경** | **`chgrp`** | 소유 그룹만 전용으로 변경 | `chgrp devgroup app.py` |
 | **재귀 옵션** | **`-R`** | 하위 모든 파일/폴더 일괄 적용 | `chmod -R 600 ~/.ssh` |
