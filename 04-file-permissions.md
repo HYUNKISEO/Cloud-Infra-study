@@ -112,6 +112,8 @@ chown :devgroup app.py
 chown -R www-data:www-data /var/www/html
 ```
 
+> 💡 **참고:** 소유 그룹만 전용으로 변경할 때는 `chgrp devgroup app.py` 명령어를 사용할 수도 있습니다.
+
 ---
 
 ## 5. 디렉터리 권한의 특수성과 실무 주의사항
@@ -155,5 +157,6 @@ chown -R www-data:www-data /var/www/html
 | :--- | :--- | :--- | :--- |
 | **권한 변경** | **`chmod`** | 파일/디렉터리 접근 권한 변경 | `chmod 755 script.sh` / `chmod +x run.sh` |
 | **소유권 변경** | **`chown`** | 소유자 및 소유 그룹 변경 | `chown -R nginx:nginx /var/www` |
+| **그룹 전용 변경** | **`chgrp`** | 소유 그룹만 전용으로 변경 | `chgrp devgroup app.py` |
 | **재귀 옵션** | **`-R`** | 하위 모든 파일/폴더 일괄 적용 | `chmod -R 600 ~/.ssh` |
 | **권한 점수** | **`r = 4`, `w = 2`, `x = 1`** | 읽기, 쓰기, 실행 점수 합산 | `7(rwx)`, `6(rw-)`, `5(r-x)`, `4(r--)` |
