@@ -213,4 +213,4 @@
 > 복잡하고 깊은 폴더 경로로 매번 이동하기 힘들 때, 원하는 위치에 '바로가기' 링크를 만들어 간편하게 접근할 수 있습니다.<br>
 > 웹 서버 무중단 배포(`current` -> `v1.0.0`)나 프로그램 버전 교체 시 실무에서 매우 자주 쓰입니다.<br>
 > * `ln -s [원본_실제경로] [바로가기_이름]`<br>
-> * 예시: `ln -s /var/log/nginx/access.log my_log.txt` ➡️ `my_log.txt`를 열면 실제 로그 파일이 열림
+> * 예시: `ln -s /var/log/nginx/access.log my_log.txt` ➡️ `my_log.txt`를 열면 해당경로에 있는 로그 파일이 열림
