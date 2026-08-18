@@ -1,4 +1,4 @@
-# 🚀 실전! 리눅스 초기 환경 자동 세팅 (Dotfiles)
+# ⚡ 1초 만에 끝내는 리눅스 단축어(Alias) 자동화 매뉴얼
 
 새 깡통 리눅스 서버(AWS, Ubuntu, 가상머신 등)에 접속했을 때 단 한 줄의 명령어(One-Liner)로 나만의 단축어(`alias`)와 자동화 세팅을 구축하는 통합 매뉴얼입니다.
 
@@ -64,3 +64,5 @@ curl -sL [https://raw.githubusercontent.com/내아이디/my-dotfiles/main/setup.
    * `~/.bashrc` 파일에 `(cd ~/my-dotfiles && git pull --quiet)` 구문이 적혀 있어, **터미널을 켤 때마다 0.01초 만에 깃허브에서 최신 단축어를 자동으로 땡겨옵니다.**
 4. **단축어 수정 및 유지보수**:
    * 노트북이나 집 컴퓨터에서 깃허브의 `.bash_aliases` 파일만 새로 수정/업로드(`git push`)해 두면, 서버 접속 시 자동으로 최신 상태로 업데이트됩니다.
+  
+# 추후엔 기본세팅까지 한번에 one-line setting 으로 업데이트 해보자!
