@@ -33,6 +33,7 @@ Ubuntu 등 우분투 계열에서 사용하는 가장 대표적인 패키지 관
   * `apt install [패키지명]`: 패키지 설치 (`-y` 옵션으로 확인 절차 자동 승인)
   * `apt remove` vs `apt purge`: 패키지 삭제 (설정 파일 남김 vs 설정 파일까지 완전 삭제)
   * `apt autoremove`: 더 이상 필요 없는 의존성 패키지 일괄 정리
+  * `apt clean`: 다운로드되어 쌓인 패키지 캐시 파일(`.deb`) 일괄 삭제 (용량 확보)
 
 ```bash
 # 1. 패키지 설치 전 반드시 저장소 목록 최신화
@@ -44,14 +45,18 @@ apt search nginx
 # 3. 패키지 설치 (대화형 확인 프롬프트 자동 승인: -y)
 sudo apt install -y nginx curl git
 
-# 4. 패키지 삭제 (설정 파일은 유지)
+# 4. [실무 팁] 웹에서 다운받은 외부 로컬 파일(.deb) 설치 (의존성 자동 해결)
+sudo apt install ./google-chrome-stable_current_amd64.deb
+
+# 5. 패키지 삭제 (설정 파일은 유지)
 sudo apt remove nginx
 
-# 5. 패키지 완전 삭제 (설정 파일까지 깔끔하게 제거)
+# 6. 패키지 완전 삭제 (설정 파일까지 깔끔하게 제거)
 sudo apt purge nginx
 
-# 6. 사용하지 않는 불필요한 의존성 패키지 정리
+# 7. 사용하지 않는 의존성 패키지 및 다운로드 캐시 정리
 sudo apt autoremove
+sudo apt clean
 ```
 
 > 🛑 **실무 주의사항 (`apt update` vs `apt upgrade`):** 
@@ -71,6 +76,7 @@ RedHat 계열에서 사용하는 패키지 관리 도구로, 최근 버전(CentO
   * `yum install [패키지명]`: 패키지 설치
   * `yum update [패키지명]`: 특정 패키지 또는 전체 시스템 업그레이드
   * `yum remove [패키지명]`: 패키지 삭제
+  * `yum clean all`: 다운로드된 패키지 캐시 및 메타데이터 전체 삭제 (용량 확보)
 
 ```bash
 # 1. 업데이트 가능한 패키지 목록 확인
@@ -83,11 +89,15 @@ yum info htop
 # 3. 패키지 설치 (-y 옵션으로 자동 승인)
 sudo yum install -y htop wget
 
-# 4. 특정 패키지 업데이트
+# 4. [실무 팁] 외부에서 다운로드받은 로컬 파일(.rpm) 설치
+sudo yum localinstall ./zoom_x86_64.rpm
+
+# 5. 특정 패키지 업데이트
 sudo yum update htop
 
-# 5. 패키지 삭제
+# 6. 패키지 삭제 및 캐시 정리
 sudo yum remove htop
+sudo yum clean all
 ```
 
 > 💡 **`yum`과 `dnf` 관계:** `dnf`는 `yum`의 메모리 사용량과 성능을 개선한 차세대 패키지 매니저입니다. RHEL/Rocky 최신 버전에서는 `yum` 명령어를 입력해도 내부적으로 `dnf`로 자동 연결됩니다.
@@ -142,10 +152,11 @@ sudo rm /var/lib/dpkg/lock-frontend
 | **목록 갱신** | `sudo apt update` | `yum check-update` | 원격 저장소 패키지 정보 업데이트 |
 | **패키지 검색** | `apt search [키워드]` | `yum search [키워드]` | 저장소 내 패키지 이름/설명 검색 |
 | **패키지 설치** | `sudo apt install -y [이름]` | `sudo yum install -y [이름]` | 패키지 및 의존성 자동 설치 |
+| **로컬 설치** | `sudo apt install ./파일.deb` | `sudo yum localinstall 파일.rpm` | 다운받은 로컬 파일 의존성 포함 설치 |
 | **패키지 삭제** | `sudo apt remove [이름]` | `sudo yum remove [이름]` | 패키지 제거 (기본 설정 유지) |
 | **완전 삭제** | `sudo apt purge [이름]` | - | 패키지 및 관련 설정 파일까지 완전 제거 |
 | **시스템 전체 업데이트**| `sudo apt upgrade` | `sudo yum update` | 설치된 전체 패키지 최신화 |
-| **의존성 정리** | `sudo apt autoremove` | `sudo yum autoremove` | 불필요해진 잔여 의존성 파일 삭제 |
+| **캐시 정리** | `sudo apt clean` | `sudo yum clean all` | 임시 패키지 캐시 삭제로 디스크 용량 확보 |
 
 ---
 
