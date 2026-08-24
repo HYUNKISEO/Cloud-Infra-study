@@ -44,11 +44,22 @@ ps -ef | grep python
 pgrep -fl nginx
 ```
 
+* **`ps aux` 실제 터미널 출력 예시:**
+
+```text
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.2 168332 11980 ?        Ss   09:00   0:02 /sbin/init
+ubuntu      1234  1.5  2.4 712340 50120 pts/0    R+   10:15   0:05 python3 app.py
+www-data    5678  0.1  0.8 142100 32400 ?        S    09:30   0:01 nginx: worker process
+```
+
 > 💡 **`ps aux` 주요 출력 항목 보는 법:**
 > * `USER`: 프로세스를 실행한 계정
-> * `PID`: 프로세스 고유 번호
+> * `PID`: 프로세스 고유 번호 (프로세스 제어 시 사용)
 > * `%CPU` / `%MEM`: CPU 및 메모리 점유율
+> * `VSZ` / `RSS`: 가상 메모리 크기 / 실제 물리 메모리 사용량 (KB)
 > * `STAT`: 프로세스 상태 (`R`: 실행 중, `S`: 대기 중, `Z`: 좀비 프로세스, `D`: 중단 불가능한 입출력 대기)
+> * `COMMAND`: 실행된 명령어 경로 및 인자
 
 ---
 
@@ -118,7 +129,7 @@ sudo killall -9 python3
   * `jobs`: 현재 터미널 작업 목록 조회
   * `fg %[작업번호]`: 백그라운드 작업을 포그라운드로 전환
   * `bg %[작업번호]`: 일시 중지된 작업을 백그라운드 실행 상태로 전환
-  * `nohup`: 터미널 세션이 종료(Hangup)되어도 백그라운드 프로세스를 계속 유지
+  * `nohup`: 터미널 세션이 종료(Hangup)되어도 백그라운드 프로세스가 계속 유지
 
 ```bash
 # 1. 오랜 시간이 걸리는 작업을 백그라운드로 실행
