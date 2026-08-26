@@ -1,4 +1,4 @@
-# 09. 서버 IP와 네트워크 트러블슈팅 (ip, ping, ss, netstat, curl)
+# 09. 서버 IP와 네트워크 트러블슈팅 (ip, ping, ss, netstat, curl, lsof, traceroute)
 
 > **학습일:** Day 9 <br>
 > **학습 목표:** 서버의 IP 및 네트워크 인터페이스를 확인하고, 포트(Port) 점유 상태 및 네트워크 도달 가능성을 진단하며, `curl`을 통해 HTTP API 요청 및 Nginx/App 통신 장애를 해결하는 실무 기술을 익힙니다.
@@ -52,20 +52,25 @@ ip route
 
 ---
 
-## 3. 네트워크 도달성 및 포트 오픈 검증 (`ping`, `nc` / `telnet`)
+## 3. 네트워크 도달성 및 경로 추적 (`ping`, `traceroute`, `nc`)
 
-상대방 서버나 내부 서비스에 네트워크 신호가 정상적으로 도달하는지 확인합니다.
+상대방 서버나 내부 서비스에 네트워크 신호가 정상적으로 도달하는지, 어디서 막히는지 확인합니다.
 
-### 3.1 `ping` (ICMP 프로토콜 레벨 테스트)
-상대방 IP/도메인까지 네트워크 패킷이 왕복할 수 있는지 확인합니다.
+### 3.1 `ping` (ICMP 프로토콜 레벨 테스트) & `traceroute` (경로 추적)
+상대방 IP/도메인까지 네트워크 패킷이 왕복할 수 있는지 확인하고, 도중 끊기는 구간을 찾아냅니다.
 
 ```bash
-# google.com으로 4번만 패킷을 보내 연결 상태 및 응답 시간(ms) 확인
+# 1. google.com으로 4번만 패킷을 보내 연결 상태 및 응답 시간(ms) 확인
 ping -c 4 google.com
+
+# 2. [인프라/네트워크 전담팀 영역] 내 서버부터 목적지까지 거치는 라우터 구간(Hop) 추적
+traceroute 8.8.8.8
+# 또는 traceroute가 없을 때: tracepath 8.8.8.8
 ```
 
-> 🛑 **클라우드(AWS) 주의사항:**
-> * AWS EC2 보안그룹(Security Group)이나 방화벽 설정에서 **ICMP 프로토콜을 차단**해 두면, 서버가 정상 작동 중이라도 `ping` 응답이 오지 않고 타임아웃이 납니다.
+> 🛑 **클라우드(AWS) 주의사항 및 traceroute 활용:**
+> * AWS EC2 보안그룹(Security Group)이나 방화벽 설정에서 **ICMP 프로토콜을 차단**해 두면 `ping` 타임아웃이 납니다.
+> * `traceroute`는 내 컴퓨터 ➔ 통신사 ➔ 게이트웨이 ➔ AWS 인프라 구간 중 **어느 단계 라우터에서 패킷이 병목되거나 병목/지연이 생기는지** 홉(Hop) 단위로 점검할 때 사용합니다.
 
 ### 3.2 `nc` (Netcat) - 특정 IP + 포트 열림 확인 (★ 클라우드 필수)
 `ping`은 특정 포트(예: 8080포트)가 열렸는지는 확인하지 못합니다. **방화벽이나 보안그룹에서 해당 포트를 허용했는지** 확인하려면 `nc`를 사용합니다.
@@ -81,15 +86,19 @@ nc -zv -w 3 192.168.1.50 8080
 
 ---
 
-## 4. 포트 점유 및 소켓 상태 조회 (`ss` & `netstat`)
+## 4. 포트 점유 및 소켓 상태 조회 (`ss`, `lsof`, `netstat`)
 
 서버 내부에서 **어떤 포트가 열려 있는지**, **포트를 차지하고 있는 프로세스가 무엇인지** 확인합니다.
 
 ```bash
-# 현재 LISTEN(대기) 중인 모든 TCP/UDP 포트와 관련 프로세스(PID/이름) 조회
+# 1. 현재 LISTEN(대기) 중인 모든 TCP/UDP 포트와 관련 프로세스(PID/이름) 조회
 sudo ss -tulpn
+
+# 2. [초고속 직관적 명령어] 특정 포트(예: 3000번)를 점유 중인 프로세스 즉시 확인
+sudo lsof -i :3000
 ```
-* **옵션 의미:**
+
+* **`ss -tulpn` 옵션 의미:**
   * `-t` (TCP): TCP 프로토콜 소켓 조회
   * `-u` (UDP): UDP 프로토콜 소켓 조회
   * `-l` (Listening): 접속 대기 중인 포트만 조회
@@ -103,8 +112,8 @@ sudo ss -tulpn
 새로운 앱(예: Node.js)을 3000번 포트로 실행하려는데 이미 기존 프로세스가 3000번을 쓰고 있으면 발생하는 에러입니다.
 
 ```bash
-# 1. 3000번 포트를 점유 중인 프로세스 PID 확인
-sudo ss -tulpn | grep :3000
+# 1. 3000번 포트를 점유 중인 프로세스 PID 확인 (lsof 방식 사용 시)
+sudo lsof -i :3000
 
 # 2. 해당 프로세스 PID(예: 1234) 확인 후 안전 종료(kill -15) 또는 강제 종료(kill -9)
 sudo kill -15 1234
@@ -122,13 +131,16 @@ sudo kill -15 1234
 # 1. 간단한 GET 요청으로 HTML/JSON 응답 본문 출력
 curl [https://api.example.com/health](https://api.example.com/health)
 
-# 2. HTTP 리다이렉트(301/302) 발생 시 최종 목적지까지 추적하여 이동 (-L)
+# 2. [개발/테스트 필수] SSL 인증서 검증 무시하고 강제 접속 (-k 또는 --insecure)
+curl -k [https://dev-api.local/health](https://dev-api.local/health)
+
+# 3. HTTP 리다이렉트(301/302) 발생 시 최종 목적지까지 추적하여 이동 (-L)
 curl -L [http://example.com](http://example.com)
 
-# 3. 응답 헤더(HTTP 상태코드 200/404/500, Server, Content-Type 등)만 확인 (-I)
+# 4. 응답 헤더(HTTP 상태코드 200/404/500, Server, Content-Type 등)만 확인 (-I)
 curl -I [https://api.example.com](https://api.example.com)
 
-# 4. [트러블슈팅 전용] 요청/응답 전체 과정 및 SSL/TLS 핸드셰이크 상세 출력 (-v)
+# 5. [트러블슈팅 전용] 요청/응답 전체 과정 및 SSL/TLS 핸드셰이크 상세 출력 (-v)
 curl -v [https://api.example.com](https://api.example.com)
 ```
 
@@ -147,9 +159,9 @@ curl -X POST [https://api.example.com/users](https://api.example.com/users) \
 
 ---
 
-## 6. DNS 도메인 해석 진단 (`dig`, `nslookup`)
+## 6. DNS 도메인 해석 진단 (`dig`, `nslookup`, `/etc/hosts`)
 
-도메인(예: `myapi.com`)을 쳤을 때 올바른 IP 주소로 연결되는지 확인합니다.
+도메인(예: `myapi.com`)을 쳤을 때 올바른 IP 주소로 연결되는지 확인하고, 도메인 연결 전 강제로 매핑을 테스트합니다.
 
 ```bash
 # 1. 특정 도메인의 DNS A 레코드(IP) 상세 조회
@@ -157,6 +169,18 @@ dig myapi.com
 
 # 2. 간략하게 IP 매핑 정보만 빠르게 확인
 nslookup myapi.com
+```
+
+### 6.1 로컬 DNS 강제 매핑 (`/etc/hosts`)
+DNS 서버 설정이 완료되기 전이거나, 개발 환경에서 특정 도메인을 내 테스트 서버 IP로 강제 연결하여 검증할 때 사용합니다.
+
+```bash
+# /etc/hosts 파일에 테스트용 IP 및 도메인 추가
+sudo vi /etc/hosts
+
+# 파일 하단에 매핑 정보 작성 예시:
+# [서버 IP]        [연결할 도메인]
+# 192.168.1.100   myapi.local
 ```
 
 ---
@@ -167,8 +191,12 @@ nslookup myapi.com
 | :--- | :--- | :--- |
 | **`ip a`** | 서버 IP 주소 확인 | 내 서버의 사설(Private) IP 파악 시 사용 |
 | **`ping [IP/도메인]`** | 기본 네트워크 도달성 확인 | 인터넷 연결 상태 확인 (단, AWS ICMP 차단 주의) |
+| **`traceroute [IP]`** | 네트워크 라우팅 경로 추적 | 어느 구간(Hop) 라우터에서 패킷 지연/손실이 발생하는지 진단 |
 | **`nc -zv [IP] [PORT]`** | 특정 포트 접근 가능 여부 | **AWS 보안그룹/방화벽이 닫혔는지** 진단하는 1순위 도구 |
-| **`sudo ss -tulpn`** | 열려 있는 포트 & PID 조회 | **Address already in use** 포트 충돌 원인 프로세스 추적 |
+| **`sudo lsof -i :[PORT]`**| 특정 포트 점유 프로세스 검색 | 포트 충돌 시 해당 포트를 쓰는 PID를 초고속 직관적 추적 |
+| **`sudo ss -tulpn`** | 열려 있는 모든 포트 & PID 조회 | **Address already in use** 포트 충돌 전체 현황 파악 |
+| **`curl -k [URL]`** | SSL 인증서 검증 무시 호출 | 테스트/개발 서버의 자체 발급 SSL 인증서 에러 우회 |
 | **`curl -v [URL]`** | HTTP 요청/응답 과정 상세 분석 | API 상태 코드(500, 502, 403) 및 SSL 인증서 문제 분석 |
 | **`curl -I [URL]`** | HTTP 헤더만 빠르게 확인 | 웹 서버 작동 여부 및 캐시/CORS 헤더 점검 |
 | **`dig [도메인]`** | DNS IP 매핑 조회 | 도메인 연결 설정 후 IP 반영 여부 확인 |
+| **`/etc/hosts`** | 로컬 DNS 강제 매핑 파일 | DNS 등록 전 개발용 도메인을 원하는 IP로 로컬 테스트 |
