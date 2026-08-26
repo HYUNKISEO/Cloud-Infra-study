@@ -31,8 +31,8 @@
 | **05** | 사용자 및 그룹 계정 관리 (`useradd`, `passwd`, `sudo`) | [`05-user-management.md`](05-user-management.md) | ✅ 완료 |
 | **06** | 패키지 매니저를 통한 프로그램 설치와 삭제 (`apt` / `yum`) | [`06-package-management.md`](06-package-management.md) | ✅ 완료 |
 | **07** | 실행 중인 프로그램 모니터링 및 제어 (`ps`, `top`, `kill`) | [`07-process-management.md`](07-process-management.md) | ✅ 완료 |
-| **08** | 디스크 용량 분석 및 파일시스템 마운트 (`df`, `du`, `mount`) | [`08-disk-storage.md`](08-disk-storage.md) | 🔥 진행중 |
-| **09** | 서버 IP와 네트워크 트러블슈팅 (`ip`, `ping`, `ss`, `netstat`, `curl`) | [`09-network-basic.md`](09-network-basic.md) | ⏳ 대기중 |
+| **08** | 디스크 용량 분석 및 파일시스템 마운트 (`df`, `du`, `mount`) | [`08-disk-storage.md`](08-disk-storage.md) | ✅ 완료 |
+| **09** | 서버 IP와 네트워크 트러블슈팅 (`ip`, `ping`, `ss`, `netstat`, `curl`) | [`09-network-basic.md`](09-network-basic.md) | 🔥 진행중 |
 | **10** | 시큐어한 원격 접속의 기본: SSH 설정 및 키 인증 (`authorized_keys`) | [`10-remote-access-ssh.md`](10-remote-access-ssh.md) | ⏳ 대기중 |
 | **11** | 시스템 백그라운드 서비스 및 로그 관리 (`systemctl`, `journalctl`) | [`11-service-systemd.md`](11-service-systemd.md) | ⏳ 대기중 |
 | **12** | 반복 작업 자동화 스케줄러 (`crontab`) | [`12-cron-automation.md`](12-cron-automation.md) | ⏳ 대기중 |
