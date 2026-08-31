@@ -34,8 +34,8 @@
 | **08** | 디스크 용량 분석 및 파일시스템 마운트 (`df`, `du`, `mount`) | [`08-disk-storage.md`](08-disk-storage.md) | ✅ 완료 |
 | **09** | 서버 IP와 네트워크 트러블슈팅 (`ip`, `ping`, `ss`, `netstat`, `curl`) | [`09-network-basic.md`](09-network-basic.md) | ✅ 완료 |
 | **10** | 시큐어한 원격 접속의 기본: SSH 설정 및 키 인증 (`authorized_keys`) | [`10-remote-access-ssh.md`](10-remote-access-ssh.md) | ✅ 완료 |
-| **11** | 시스템 백그라운드 서비스 및 로그 관리 (`systemctl`, `journalctl`) | [`11-service-systemd.md`](11-service-systemd.md) | 🔥 진행중 |
-| **12** | 반복 작업 자동화 스케줄러 (`crontab`) | [`12-cron-automation.md`](12-cron-automation.md) | ⏳ 대기중 |
+| **11** | 시스템 백그라운드 서비스 및 로그 관리 (`systemctl`, `journalctl`) | [`11-service-systemd.md`](11-service-systemd.md) | ✅ 완료 |
+| **12** | 반복 작업 자동화 스케줄러 (`crontab`) | [`12-cron-automation.md`](12-cron-automation.md) | 🔥 진행중 |
 | **13** | 서버 로그 분석을 통한 장애 트러블슈팅 (`/var/log`) | [`13-log-management.md`](13-log-management.md) | ⏳ 대기중 |
 | **14** | 반복 업무를 줄여주는 간단한 쉘 스크립트 작성 (`.sh`) | [`14-shell-script-intro.md`](14-shell-script-intro.md) | ⏳ 대기중 |
 | **15** | [종합 점검] 실무 장애 대응 시나리오 및 최종 총정리 | [`15-linux-review-project.md`](15-linux-review-project.md) | ⏳ 대기중 |
