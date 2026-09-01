@@ -67,7 +67,7 @@ less /var/log/syslog
 
 ---
 
-## 4. 로그 디스크 폭주 방지: logrotate 매커니즘
+## 4. 로그 디스크 폭주 방지: logrotate 매커니즘 및 용량 정리
 
 로그 파일이 계속 쌓여 디스크 용량이 100%가 되면 서버가 다운됩니다. 이를 방지하기 위해 리눅스는 `logrotate` 서비스를 이용해 로그를 주기적으로 압축하고 오래된 로그를 삭제합니다.
 
@@ -78,11 +78,24 @@ syslog.1      <-- 지난 주(또는 어제) 기록된 1차 백업 파일
 syslog.2.gz   <-- gzip으로 압축되어 용량이 줄어든 과거 로그 파일
 ```
 
-### 4.2 압축된 로그 파일 검색 (`zgrep`, `zcat`)
-`.gz`로 압축된 과거 로그는 압축을 풀지 않고도 전용 명령어로 바로 검색할 수 있습니다.
+### 4.2 압축된 로그 파일 검색 및 전체 열람 (`zgrep`, `zless`)
+`.gz`로 압축된 과거 로그는 해제하지 않고 전용 명령어로 즉시 확인이 가능합니다.
 ```bash
-# 압축된 syslog.2.gz 안에서 "CRON" 키워드 검색
+# 1. 압축된 syslog.2.gz 안에서 "CRON" 키워드만 검색
 zgrep "CRON" /var/log/syslog.2.gz
+
+# 2. 압축된 로그 파일 전체를 less처럼 편하게 열어보기 (q로 종료)
+zless /var/log/syslog.2.gz
+```
+
+### 4.3 [실무 팁] journald 로그 용량 폭주 시 긴급 정리 (`journalctl --vacuum`)
+디스크가 100% 찼을 때 systemd 저널 로그를 긴급 삭제하여 공간을 확보합니다.
+```bash
+# journal 로그 용량을 최신 500MB만 남기고 삭제
+sudo journalctl --vacuum-size=500M
+
+# 7일 이상 된 journal 로그 일괄 삭제
+sudo journalctl --vacuum-time=7d
 ```
 
 ---
@@ -122,4 +135,5 @@ zgrep "CRON" /var/log/syslog.2.gz
 | **시스템 에러** | `/var/log/syslog` | `/var/log/messages` | OS 장애, 데몬 비정상 종료 원인 규명 |
 | **인증/보안** | `/var/log/auth.log` | `/var/log/secure` | 무단 접근 시도, sudo 권한 남용 추적 |
 | **메모리/커널** | `dmesg` 명령어 | `dmesg` 명령어 | OOM Killer 동작 여부 및 하드웨어 에러 확인 |
-| **압축 파일 검색**| `zgrep [단어] [파일.gz]` | `zgrep [단어] [파일.gz]` | `logrotate`로 압축된 과거 로그 검색 |
+| **압축 파일 검색/열람**| `zgrep`, `zless` | `zgrep`, `zless` | `logrotate`로 압축된 과거 로그 검색 및 열람 |
+| **용량 긴급 정리**| `journalctl --vacuum-size` | `journalctl --vacuum-size` | 저널 로그 정리로 디스크 용량 확보 |
