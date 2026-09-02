@@ -26,7 +26,7 @@
 
 ---
 
-## 🌐 Phase 2. Cloud Network & Security (Coming Soon 🔥)
+## 🌐 Phase 2. Cloud Network & Security (Coming Soon ⏳)
 
 > AWS, GCP 등 클라우드 인프라의 핵심이 되는 네트워크 구성 요소(IP, Subnetting, Routing, DNS, VPC, Security Group) 및 보안 메커니즘을 완벽히 이해합니다.
 
