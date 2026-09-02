@@ -22,4 +22,4 @@
 | **12** | 반복 작업 자동화 스케줄러 (`crontab`) | [`12-cron-automation.md`](12-cron-automation.md) | ✅ 완료 |
 | **13** | 서버 로그 분석을 통한 장애 트러블슈팅 (`/var/log`) | [`13-log-management.md`](13-log-management.md) | ✅ 완료 |
 | **14** | 반복 업무를 줄여주는 간단한 쉘 스크립트 작성 (`.sh`) | [`14-shell-script-intro.md`](14-shell-script-intro.md) | 🔥 진행중 |
-| **15** | [종합 점검] 실무 장애 대응 시나리오 및 최종 총정리 | [`15-linux-review-project.md`](15-linux-review-project.md) | ⏳ 대기중 |
+| **15** | 실무 장애 대응 시나리오 및 Phase 1 종합 점검 | [`15-troubleshooting-scenario.md`](15-troubleshooting-scenario.md) | ⏳ 대기중 |
