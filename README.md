@@ -9,8 +9,8 @@
 
 | Phase | 주제 및 역량 목표 | 기간 / 학습량 | 상태 | 상세 기록 |
 | :---: | :--- | :---: | :---: | :---: |
-| **01** | **Linux 기초 및 시스템 관리** | 15 Days | ✅ 완료 | [`📁 01-Linux-Study`](./01-Linux-Study) |
-| **02** | **클라우드 네트워크 & 보안 (IP, DNS, VPC, Firewall)** | 10 Days | 🔥 진행 예정 | [`📁 02-Cloud-Network`](./02-Cloud-Network) |
+| **01** | **Linux 기초 및 시스템 관리** | 15 Days | 🔥 진행 중 | [`📁 01-Linux-Study`](./01-Linux-Study) |
+| **02** | **클라우드 네트워크 & 보안 (IP, DNS, VPC, Firewall)** | 12 Days | ⏳ 진행 예정 | [`📁 02-Cloud-Network`](./02-Cloud-Network) |
 | **03** | **쉘 스크립트(Bash) & 인프라 자동화 기초** | - | ⏳ 대기중 | - |
 | **04** | **AWS Core Services (EC2, S3, IAM, ALB)** | - | ⏳ 대기중 | - |
 | **05** | **컨테이너 기반 인프라 (Docker & Kubernetes)** | - | ⏳ 대기중 | - |
@@ -18,15 +18,15 @@
 
 ---
 
-## 🐧 Phase 1. Linux System Administrator (Completed ✅)
+## 🐧 Phase 1. Linux System Administrator (In Progress 🔥)
 
-> 클라우드 서버의 뼈대가 되는 리눅스 핵심 명령어, 권한/소유권, 서비스 관리(`systemctl`), 네트워크/로그 트러블슈팅, 크론탭 스케줄링, 쉘 스크립트 기초까지 **15일간의 실무 학습을 성공적으로 완수**했습니다.
+> 클라우드 서버의 뼈대가 되는 리눅스 핵심 명령어, 권한/소유권, 서비스 관리(`systemctl`), 네트워크/로그 트러블슈팅, 크론탭 스케줄링, 쉘 스크립트 기초까지 **15일간의 실무 학습 과정**입니다.
 
 * 📖 **일별 학습 목차 & 노하우 정리:** [`01-Linux-Study 폴더 바로가기`](./01-Linux-Study)
 
 ---
 
-## 🌐 Phase 2. Cloud Network & Security (Coming Soon ⏳)
+## 🌐 Phase 2. Cloud Network & Security (Up Next ⏳)
 
 > AWS, GCP 등 클라우드 인프라의 핵심이 되는 네트워크 구성 요소(IP, Subnetting, Routing, DNS, VPC, Security Group) 및 보안 메커니즘을 완벽히 이해합니다.
 
