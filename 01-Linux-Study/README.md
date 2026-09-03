@@ -21,5 +21,5 @@
 | **11** | 시스템 백그라운드 서비스 및 로그 관리 (`systemctl`, `journalctl`) | [`11-service-systemd.md`](11-service-systemd.md) | ✅ 완료 |
 | **12** | 반복 작업 자동화 스케줄러 (`crontab`) | [`12-cron-automation.md`](12-cron-automation.md) | ✅ 완료 |
 | **13** | 서버 로그 분석을 통한 장애 트러블슈팅 (`/var/log`) | [`13-log-management.md`](13-log-management.md) | ✅ 완료 |
-| **14** | 반복 업무를 줄여주는 간단한 쉘 스크립트 작성 (`.sh`) | [`14-shell-script-intro.md`](14-shell-script-intro.md) | 🔥 진행중 |
-| **15** | 실무 장애 대응 시나리오 및 Phase 1 종합 점검 | [`15-troubleshooting-scenario.md`](15-troubleshooting-scenario.md) | ⏳ 대기중 |
+| **14** | 반복 업무를 줄여주는 간단한 쉘 스크립트 작성 (`.sh`) | [`14-shell-script-intro.md`](14-shell-script-intro.md) | ✅ 완료 |
+| **15** | 실무 장애 대응 시나리오 및 Phase 1 종합 점검 | [`15-troubleshooting-scenario.md`](15-troubleshooting-scenario.md) | 🔥 진행중 |
