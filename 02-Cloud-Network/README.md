@@ -8,7 +8,7 @@
 
 | Day | 주제 및 학습 내용 | 파일 링크 | 상태 |
 | :---: | :--- | :---: | :---: |
-| **01** | 네트워크의 뼈대: OSI 7계층 & TCP/IP 4계층 모델 핵심 정리 | [`01-osi-tcpip-model.md`](01-osi-tcpip-model.md) | ⏳ 대기중 |
+| **01** | 네트워크의 뼈대: OSI 7계층 & TCP/IP 4계층 모델 핵심 정리 | [`01-osi-tcpip-model.md`](01-osi-tcpip-model.md) | 🔥 진행중 |
 | **02** | IP 주소 체계와 CIDR, 서브네팅(Subnetting) 계산법 | [`02-ip-cidr-subnetting.md`](02-ip-cidr-subnetting.md) | ⏳ 대기중 |
 | **03** | L4 신뢰성 통신: TCP vs UDP, Port, 3-Way Handshake | [`03-tcp-udp-ports.md`](03-tcp-udp-ports.md) | ⏳ 대기중 |
 | **04** | 패킷 이동의 핵심: 라우팅(Routing)과 게이트웨이(Gateway) | [`04-routing-gateway.md`](04-routing-gateway.md) | ⏳ 대기중 |
